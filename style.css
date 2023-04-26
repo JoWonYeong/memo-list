@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: url('img/back.jpg') repeat;
+}
+
+.main {
+  display: flex;
+  margin: auto;
+  width: 70%;
+  box-shadow: inset 0px 0px 0px 2px lightcoral;
+}
+
+.memo-pad {
+  box-shadow: inset 0px 0px 0px 2px blue;
+  position: relative;
+  width: 40%;
+  flex-shrink: 0;
+}
+
+.memo-pad > * {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.memo-list {
+  width: 60%;
+  height: 95vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}
