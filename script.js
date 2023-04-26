@@ -1,5 +1,5 @@
 // localStorage.clear();
-const memoBtn = document.querySelector('.memo-btn');
+const memoBtn = document.querySelector('.saveBtn');
 const main = document.querySelector('.main');
 let memos = JSON.parse(localStorage.getItem('memo'));
 memos = memos ?? [];
@@ -43,26 +43,33 @@ function setMemo() {
   for (let i = memos.length - 1; i >= 0; i--) {
     // article
     let article = document.createElement('article');
+    article.classList.add('list-article');
     article.setAttribute('data-id', memos[i].id);
     // h2 : title
     let title = document.createElement('h2');
+    title.classList.add('list-title');
     title.textContent = memos[i].title;
     // span : date
     let data = document.createElement('span');
     data.textContent = memos[i].date;
     // p : content
     let content = document.createElement('p');
+    content.classList.add('list-content');
     content.textContent = memos[i].content;
-    // button : delteBtn
-    let deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('deleteBtn');
-    deleteBtn.textContent = 'x';
     // button : edit
     let editBtn = document.createElement('button');
     editBtn.classList.add('editBtn');
     editBtn.textContent = '수정';
+    // button : delteBtn
+    let deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.textContent = '삭제';
+    // button 2개 감싸는 div
+    let btnWrap = document.createElement('div');
+    btnWrap.classList.add('btnWrap');
+    btnWrap.append(editBtn, deleteBtn);
 
-    article.append(title, data, content, deleteBtn, editBtn);
+    article.append(title, data, content, btnWrap);
     memo_list.append(article);
   }
 

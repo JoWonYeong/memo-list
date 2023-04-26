@@ -7,16 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>메모장</title>
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
   <main class="main">
     <section class="memo-pad">
-      <input type="text" name="" id="title" class="memo-title" />
+      <div class="memo-box">
+        <input type="text" name="" id="title" placeholder="제목을 적어주세요." class="memo-title" />
 
-      <textarea name="" id="content" cols="30" rows="10" class="memo-content"></textarea>
+        <textarea name="" id="content" cols="30" rows="15" placeholder="메모를 적어주세요." class="memo-content"></textarea>
 
-      <button class="memo-btn">저장</button>
+        <button class="saveBtn">저장</button>
+      </div>
     </section>
 
     <section class="memo-list">

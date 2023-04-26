@@ -1,33 +1,132 @@
+@font-face {
+  font-family: 'NanumSquareNeo-Variable';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   box-sizing: border-box;
+  font-family: 'NanumSquareNeo-Variable';
 }
 
 body {
   background: url('img/back.jpg') repeat;
 }
 
+button {
+  /* box-shadow: inset 0px 0px 0px 2px lightcoral; */
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  color: grey;
+  border: 1px solid grey;
+  border-radius: 6px;
+  font-size: 20px;
+}
+
 .main {
   display: flex;
   margin: auto;
   width: 70%;
-  box-shadow: inset 0px 0px 0px 2px lightcoral;
+  /* box-shadow: inset 0px 0px 0px 2px lightcoral; */
+  margin-top: 20px;
+  font-size: 22px;
 }
 
+/* ========== 메모 패드 (왼쪽) ========== */
 .memo-pad {
-  box-shadow: inset 0px 0px 0px 2px blue;
+  /* box-shadow: inset 0px 0px 0px 2px blue; */
   position: relative;
   width: 40%;
   flex-shrink: 0;
+  padding: 30px 0;
 }
 
-.memo-pad > * {
+.memo-box {
+  background-color: rgb(256, 256, 256, 0.9);
+}
+
+.memo-box > * {
   width: 100%;
   margin-bottom: 20px;
 }
 
+.memo-title {
+  padding: 20px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.memo-content {
+  font-size: 24px;
+  padding: 20px;
+}
+
+.saveBtn {
+  border: 2px solid grey;
+  font-weight: bold;
+  padding: 15px;
+  background-color: white;
+}
+
+/* ========== 메모 리스트 (오른쪽) ========== */
 .memo-list {
   width: 60%;
   height: 95vh;
   overflow: scroll;
   overflow-x: hidden;
+  padding: 30px;
+}
+
+.memo-list::-webkit-scrollbar {
+  background-color: transparent;
+  width: 17px;
+}
+
+.memo-list::-webkit-scrollbar-thumb {
+  background-color: lightcoral;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 50px;
+}
+.list-article {
+  background-color: rgb(256, 256, 256, 0.9);
+  box-shadow: inset 0px 0px 0px 2px lightcoral;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+.list-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+.list-content {
+  letter-spacing: 2px;
+}
+
+.btnWrap {
+  text-align: right;
+}
+
+.editBtn {
+  margin-right: 10px;
+}
+
+@media (max-width: 900px) {
+  .main {
+    flex-direction: column;
+    width: 95%;
+  }
+  .memo-pad {
+    padding: 30px;
+    width: 100%;
+  }
+  .memo-list {
+    width: 100%;
+    height: inherit;
+    overflow: auto;
+  }
 }
