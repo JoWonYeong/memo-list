@@ -22,7 +22,6 @@ memoBtn.addEventListener('click', function () {
   memos.push(newMemo);
 
   setMemo();
-  setDeleteBtn();
   main.querySelector('.memo-title').value = null;
   main.querySelector('.memo-content').value = null;
   localStorage.setItem('memo', JSON.stringify(memos));
@@ -54,14 +53,21 @@ function setMemo() {
     // p : content
     let content = document.createElement('p');
     content.textContent = memos[i].content;
-    // button
-    let btn = document.createElement('button');
-    btn.classList.add('deleteBtn');
-    btn.textContent = 'x';
+    // button : delteBtn
+    let deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.textContent = 'x';
+    // button : edit
+    let editBtn = document.createElement('button');
+    editBtn.classList.add('editBtn');
+    editBtn.textContent = '수정';
 
-    article.append(title, data, content, btn);
+    article.append(title, data, content, deleteBtn, editBtn);
     memo_list.append(article);
   }
+
+  setDeleteBtn();
+  setEditBtn();
 }
 
 // 메모 삭제 버튼 누르면
@@ -76,7 +82,27 @@ function setDeleteBtn() {
           memos.splice(i, 1);
           localStorage.setItem('memo', JSON.stringify(memos));
           setMemo();
-          setDeleteBtn();
+          return;
+        }
+      });
+    });
+  });
+}
+
+// 메모 수정 버튼 누르면
+// 해당메모 메모패드에 불러오고
+function setEditBtn() {
+  let editBtns = main.querySelectorAll('.editBtn');
+
+  editBtns.forEach((a, i) => {
+    a.addEventListener('click', (e) => {
+      memos.forEach((a, i) => {
+        if (a.id == e.target.parentNode.dataset.id) {
+          main.querySelector('.memo-title').value = a.title;
+          main.querySelector('.memo-content').value = a.content;
+          memos.splice(i, 1);
+          localStorage.setItem('memo', JSON.stringify(memos));
+          setMemo();
           return;
         }
       });
@@ -86,4 +112,3 @@ function setDeleteBtn() {
 
 // 페이지 로딩되면 로컬스토리지에서 메모들 가져옴
 setMemo();
-setDeleteBtn();
