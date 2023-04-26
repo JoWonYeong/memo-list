@@ -67,8 +67,8 @@ function setMemo() {
     // button 2개 감싸는 div
     let btnWrap = document.createElement('div');
     btnWrap.classList.add('btnWrap');
-    btnWrap.append(editBtn, deleteBtn);
 
+    btnWrap.append(editBtn, deleteBtn);
     article.append(title, data, content, btnWrap);
     memo_list.append(article);
   }
@@ -85,7 +85,7 @@ function setDeleteBtn() {
   deleteBtns.forEach((a, i) => {
     a.addEventListener('click', (e) => {
       memos.forEach((a, i) => {
-        if (a.id == e.target.parentNode.dataset.id) {
+        if (a.id == e.target.parentNode.parentNode.dataset.id) {
           memos.splice(i, 1);
           localStorage.setItem('memo', JSON.stringify(memos));
           setMemo();
@@ -104,7 +104,7 @@ function setEditBtn() {
   editBtns.forEach((a, i) => {
     a.addEventListener('click', (e) => {
       memos.forEach((a, i) => {
-        if (a.id == e.target.parentNode.dataset.id) {
+        if (a.id == e.target.parentNode.parentNode.dataset.id) {
           main.querySelector('.memo-title').value = a.title;
           main.querySelector('.memo-content').value = a.content;
           memos.splice(i, 1);
