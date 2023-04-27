@@ -30,7 +30,7 @@ button {
   display: flex;
   margin: auto;
   /* width: 70%; */
-  width: 1224px;
+  width: 1000px;
   max-width: calc(100% - 60px);
   /* box-shadow: inset 0px 0px 0px 2px lightcoral; */
   margin-top: 20px;
