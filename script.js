@@ -1,7 +1,7 @@
 // localStorage.clear();
 const memoBtn = document.querySelector('.saveBtn');
 const main = document.querySelector('.main');
-let memos = JSON.parse(localStorage.getItem('memo'));
+let memos = JSON.parse(localStorage.getItem('memos'));
 memos = memos ?? [];
 
 // 메모버튼 클릭하면
@@ -24,7 +24,7 @@ memoBtn.addEventListener('click', function () {
   setMemo();
   main.querySelector('.memo-title').value = null;
   main.querySelector('.memo-content').value = null;
-  localStorage.setItem('memo', JSON.stringify(memos));
+  localStorage.setItem('memos', JSON.stringify(memos));
   localStorage.setItem('id', JSON.stringify(++id));
 });
 
@@ -45,25 +45,33 @@ function setMemo() {
     let article = document.createElement('article');
     article.classList.add('list-article');
     article.setAttribute('data-id', memos[i].id);
+
     // h2 : title
     let title = document.createElement('h2');
     title.classList.add('list-title');
     title.textContent = memos[i].title;
+
     // span : date
     let data = document.createElement('span');
     data.textContent = memos[i].date;
+
     // p : content
     let content = document.createElement('p');
     content.classList.add('list-content');
     content.textContent = memos[i].content;
+
     // button : edit
     let editBtn = document.createElement('button');
     editBtn.classList.add('editBtn');
     editBtn.textContent = '수정';
+    editBtn.addEventListener('click', setEditBtn, false);
+
     // button : delteBtn
     let deleteBtn = document.createElement('button');
     deleteBtn.classList.add('deleteBtn');
     deleteBtn.textContent = '삭제';
+    deleteBtn.addEventListener('click', setDeleteBtn, false);
+
     // button 2개 감싸는 div
     let btnWrap = document.createElement('div');
     btnWrap.classList.add('btnWrap');
@@ -72,48 +80,33 @@ function setMemo() {
     article.append(title, data, content, btnWrap);
     memo_list.append(article);
   }
-
-  setDeleteBtn();
-  setEditBtn();
 }
 
 // 메모 삭제 버튼 누르면
 // 해당메모 로컬스토리지에서 삭제됨
-function setDeleteBtn() {
-  let deleteBtns = main.querySelectorAll('.deleteBtn');
-
-  deleteBtns.forEach((a, i) => {
-    a.addEventListener('click', (e) => {
-      memos.forEach((a, i) => {
-        if (a.id == e.target.parentNode.parentNode.dataset.id) {
-          memos.splice(i, 1);
-          localStorage.setItem('memo', JSON.stringify(memos));
-          setMemo();
-          return;
-        }
-      });
-    });
+function setDeleteBtn(e) {
+  memos.forEach((a, i) => {
+    if (a.id == e.target.parentNode.parentNode.dataset.id) {
+      memos.splice(i, 1);
+      localStorage.setItem('memo', JSON.stringify(memos));
+      setMemo();
+      return;
+    }
   });
 }
 
 // 메모 수정 버튼 누르면
 // 해당메모 메모패드에 불러오고
-function setEditBtn() {
-  let editBtns = main.querySelectorAll('.editBtn');
-
-  editBtns.forEach((a, i) => {
-    a.addEventListener('click', (e) => {
-      memos.forEach((a, i) => {
-        if (a.id == e.target.parentNode.parentNode.dataset.id) {
-          main.querySelector('.memo-title').value = a.title;
-          main.querySelector('.memo-content').value = a.content;
-          memos.splice(i, 1);
-          localStorage.setItem('memo', JSON.stringify(memos));
-          setMemo();
-          return;
-        }
-      });
-    });
+function setEditBtn(e) {
+  memos.forEach((a, i) => {
+    if (a.id == e.target.parentNode.parentNode.dataset.id) {
+      main.querySelector('.memo-title').value = a.title;
+      main.querySelector('.memo-content').value = a.content;
+      memos.splice(i, 1);
+      localStorage.setItem('memo', JSON.stringify(memos));
+      setMemo();
+      return;
+    }
   });
 }
 
