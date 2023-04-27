@@ -53,6 +53,10 @@ button {
   margin-bottom: 20px;
 }
 
+.saveBtn {
+  margin-bottom: 0;
+}
+
 .memo-title {
   padding: 20px;
   font-weight: bold;
