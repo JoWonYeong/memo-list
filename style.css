@@ -29,7 +29,9 @@ button {
 .main {
   display: flex;
   margin: auto;
-  width: 70%;
+  /* width: 70%; */
+  width: 1224px;
+  max-width: calc(100% - 60px);
   /* box-shadow: inset 0px 0px 0px 2px lightcoral; */
   margin-top: 20px;
   font-size: 22px;
@@ -119,12 +121,13 @@ button {
   .main {
     flex-direction: column;
     width: 95%;
+    max-width: none;
   }
   .memo-pad {
-    padding: 30px;
     width: 100%;
   }
   .memo-list {
+    padding: 0;
     width: 100%;
     height: inherit;
     overflow: auto;
